@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login DIRIS LIMA SUR</title>
+    <style>
+        /* Estilos generales */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Estilos para la ventana de login */
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
+                        url('https://cdn.www.gob.pe/uploads/document/file/4523314/standard_fachada.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .login-box {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-box h1 {
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .login-box h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .login-box input[type="text"], .login-box input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+
+        #mission-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        #mission {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+            font-size: 14px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #mission h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+            color: #f4f4f4;
+            letter-spacing: 1px;
+        }
+
+        #mission p {
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        /* Estilos para la segunda ventana */
+        #secondWindow {
+            display: none;
+            height: 100vh;
+            background-color: #f9f9f9;
+            flex-direction: column;
+        }
+
+        #menu {
+            background-color: #007bff;
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #menu h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        #menu button {
+            background-color: #ffffff;
+            color: #007bff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #content p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .option {
+            margin: 15px;
+            padding: 20px;
+            background-color: #e6e6e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #d4d4d4;
+        }
+
+        /* Estilos para los íconos de redes sociales */
+        .social-icon {
+            display: inline-block;
+            margin: 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: auto;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Ventana de login -->
+<div id="loginForm">
+    <div class="login-box">
+        <h1>DIRIS LIMA SUR</h1>
+        <h2>PROYECTOS DE INVERSIÓN</h2>
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="login()">Ingresar</button>
+
+        <!-- Botones de redes sociales -->
+        <div id="social-icons">
+            <div class="social-icon" onclick="openLink('facebook')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+            </div>
+            <div class="social-icon" onclick="openLink('instagram')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </div>
+            <div class="social-icon" onclick="openLink('tiktok')">
+                <img src="https://images.app.goo.gl/3kBgWDjw7mNYHrm59" alt="TikTok">
+            </div>
+        </div>
+
+        <!-- Botón de ubicación -->
+        <button id="https://www.google.com/maps/place/DIRIS+LIMA+SUR/@-12.1445185,-77.0250122,17z/data=!3m1!4b1!4m6!3m5!1s0x9105b7ee25872531:0x2a50b4b24a9ecbed!8m2!3d-12.1445185!4d-77.0224373!16s%2Fg%2F11bbypc282?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" onclick="openLocation()">Abrir Ubicación</button>
+    </div>
+
+    <div id="mission-container">
+        <div id="mission">
+            <h3>Nuestra Misión</h3>
+            <p>
+                Garantizar la atención oportuna y adecuada de los servicios de salud a los usuarios, desarrollar acciones en salud pública, emergencias, docencia e investigación.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Segunda ventana -->
+<div id="secondWindow">
+    <div id="menu">
+        <h1>Bienvenido a DIRIS</h1>
+        <h2>PROYECTOS DE INVERSIÓN</h2>
+        <button onclick="logout()">Cerrar Sesión</button>
+    </div>
+    <div class="content">
+<div style="display: grid; place-items: center; height: 100vh;">
+    <img src="https://scontent.flim19-1.fna.fbcdn.net/v/t1.6435-9/117103549_658029368135899_2954679695161462761_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGALXIb8uzyNicvDkjGSWhf1mqreMMp6c_Waqt4wynpzwbb9Kw-UO1jiN8-HnSNlAaD0_ufXpJy2-cwYkIp_HUJ&_nc_ohc=aqB0KM4DG6UQ7kNvgHHsuNy&_nc_oc=Adga7Y-WmShTqYgEFLNHeMx3SbRTgdhyDsABFOnsaKZ0JnsqpnTa3m7cn7yLJnUEzQ4&_nc_zt=23&_nc_ht=scontent.flim19-1.fna&_nc_gid=AAnmMKNp5Ba6xnBqIhABUgk&oh=00_AYCGjtkvr-rC-RPUIroscnAfWg2N4fpubGmnj2JUlv-BXg&oe=678A6053" alt="Logo Diris">
+</div>
+
+        <div class="menu">
+            <div id="content">
+                <h2>Diris LIMA SUR </h2>
+                <div class="option" onclick="openNotes()">Notas</div>
+                <div class="option" onclick="openIOARR()">IOARR</div>
+                <div class="option" onclick="openReceipts()">Recibos</div>
+                <div class="option" onclick="openMemos()">Memos</div>
+                <div class="option" onclick="openDeliverablesMenu()">Entregables</div>
+        </div>
+     
+            <ul id="deliverablesMenu" class="submenu" style="display: none;">
+                <li onclick="openMonthLink('Enero')">Enero</li>
+                <li onclick="openMonthLink('Febrero')">Febrero</li>
+                <li onclick="openMonthLink('Marzo')">Marzo</li>
+                <li onclick="openMonthLink('Abril')">Abril</li>
+                <li onclick="openMonthLink('Mayo')">Mayo</li>
+                <li onclick="openMonthLink('Junio')">Junio</li>
+                <li onclick="openMonthLink('Julio')">Julio</li>
+                <li onclick="openMonthLink('Agosto')">Agosto</li>
+                <li onclick="openMonthLink('Septiembre')">Septiembre</li>
+                <li onclick="openMonthLink('Octubre')">Octubre</li>
+                <li onclick="openMonthLink('Noviembre')">Noviembre</li>
+                <li onclick="openMonthLink('Diciembre')">Diciembre</li>                  
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function login() {
+        // Simula un inicio de sesión exitoso
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        if (username === 'admin' && password === '234') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('secondWindow').style.display = 'flex';
+        } else {
+            alert('Usuario o contraseña incorrectos');
+        }
+    }
+
+    function logout() {
+        document.getElementById('secondWindow').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'flex';
+    }
+
+    function openLink(platform) {
+        var links = {
+            facebook: 'https://www.facebook.com',
+            instagram: 'https://www.instagram.com',
+            tiktok: 'https://www.tiktok.com'
+        };
+        window.open(links[platform], '_blank');
+    }
+
+    function openLocation() {
+        window.open('https://www.google.com/maps?q=Dirección+de+Redes+Integradas+de+Salud+Lima+Sur', '_blank');
+    }
+
+    function openNotes() {
+        window.open('https://www.drive.google.com/notes', '_blank');
+    }
+
+    function openIOARR() {
+        window.open('https://www.drive.google.com/ioarr', '_blank');
+    }
+
+    function openReceipts() {
+        window.open('https://www.drive.google.com/receipts', '_blank');
+    }
+
+    function openMemos() {
+        window.open('https://www.drive.google.com/memos', '_blank');
+    }
+  function openMonthLink(month) {
+        const links = {
+            'Enero': 'https://drive.google.com/drive/folders/1G5ucXRH1-BB3NRnfpyPBZce_t-6i6Ni3?usp=drive_link',
+            'Febrero': 'https://drive.google.com/drive/folders/1pzClVaYPUKbWbHMGx-QZmhtbn2bC_egW?usp=drive_link',
+            'Marzo':' https://drive.google.com/drive/folders/1FfAjhNLouRJ6Ujjz_LJUjFr8Q3u9V3hm?usp=drive_link',
+            'Abril': 'https://drive.google.com/drive/folders/1ORqIIwXVKoBUGuFpAO2vWDGivTbOALSO?usp=drive_link',
+            'Mayo': 'https://drive.google.com/drive/folders/1g-fVESNA1tTpVmx3IXBxPzXWVsHYnkue?usp=drive_link',
+            'Junio': 'https://drive.google.com/drive/folders/1iQoWdlk2E1tgr7tPxJSyP9wD2_VHs8GG?usp=drive_link',
+            'Julio': 'https://drive.google.com/drive/folders/1vog4sYZJHOArHu3gmmtmsV4K6ZCkamGH?usp=drive_link',
+            'Agosto': 'https://drive.google.com/drive/folders/173Y1xU3Te0-yrWDtiZBKVIXbDoSWE5Gf?usp=drive_link',
+            'Septiembre': 'https://drive.google.com/drive/folders/1BiAHyy52tDC8YO2I25AEkBe-OnlhYRyK?usp=drive_link',
+            'Octubre': 'https://drive.google.com/drive/folders/1yHaE2r1ez2vZxhr0oaToVz4EytDadYSu?usp=drive_link',
+            'Noviembre': 'https://drive.google.com/drive/folders/123XhfBpUQ5PpGPssqEOWa6ukts2vjegL?usp=drive_link',
+            'Diciembre': 'https://drive.google.com/drive/folders/1Z1n4FYIRk1a7kVpW8h9PrhqL4daQxOeB?usp=drive_link'
+        };
+
+        if (links[month]) {
+            window.open(links[month], '_blank');
+        } else {
+            alert(Abrir enlace para ${month}); // Placeholder para otros meses
+        }
+    }
+
+    function openDeliverablesMenu() {
+        var menu = document.getElementById('deliverablesMenu');
+        if (menu.style.display === 'none') {
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
+    }
+
+    function openMonthLink(month) {
+        window.open('https://www.drive.google.com/' + month, '_blank');
+    }
+</script>
+
+</body>
+</html>a
